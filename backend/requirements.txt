@@ -1,0 +1,8 @@
+boto3
+pydantic
+flask
+python-dotenv
+rich
+numpy
+pandas
+matplotlib
