@@ -68,3 +68,8 @@ fabric.properties
 modules.xml
 .idea/misc.xml
 *.ipr
+
+# node_modules
+node_modules
+./frontend/node_modules
+/frontend/node_modules
