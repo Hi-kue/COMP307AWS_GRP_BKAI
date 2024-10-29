@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movap | Register</title>
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+    <main class="bg-gray-800 text-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+        <h1 class="text-2xl font-bold mb-6 text-center">Register</h1>
+        <form id="register-form" hx-post="/api/register" hx-target="#register-message">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium">Username</label>
+                <input type="text" id="username" name="username" required class="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-lg text-white">
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium">Email</label>
+                <input type="email" id="email" name="email" required class="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-lg text-white">
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium">Password</label>
+                <input type="password" id="password" name="password" required class="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-lg text-white">
+            </div>
+            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-semibold">Register</button>
+            <div id="register-message" class="mt-4 text-center text-green-500"></div>
+        </form>
+        <p class="text-center mt-4">
+            Already have an account? <a href="/login" class="text-blue-400 hover:underline">Login</a>
+        </p>
+    </main>
+</body>
+</html>
