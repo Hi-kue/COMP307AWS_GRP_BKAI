@@ -10,14 +10,17 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-boto3 = "^1.35.45"
+boto3 = "^1.35.52"
 pydantic = "^2.9.2"
 flask = "^3.0.3"
 python-dotenv = "^1.0.1"
-rich = "^13.9.2"
+rich = "^13.9.3"
 numpy = "^2.1.2"
 pandas = "^2.2.3"
 matplotlib = "^3.9.2"
+flask-login = "^0.6.3"
+flask-cors = "^5.0.0"
+flask-sqlalchemy = "^3.1.1"
 
 
 [build-system]

@@ -6,3 +6,6 @@ rich
 numpy
 pandas
 matplotlib
+Flask-Login
+Flask-Cors
+Flask-SQLAlchemy
