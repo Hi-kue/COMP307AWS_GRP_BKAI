@@ -9,3 +9,4 @@ matplotlib
 Flask-Login
 Flask-Cors
 Flask-SQLAlchemy
+jinja2
