@@ -6,11 +6,18 @@
 [![AWS](https://img.shields.io/badge/-AWS-black?style=flat&logo=amazon-web-services&logoColor)]()
 [![MySQL](https://img.shields.io/badge/-MySQL-black?style=flat&logo=mysql&logoColor)]()
 [![Digital Ocean](https://img.shields.io/badge/-Digital%20Ocean-black?style=flat&logo=digitalocean&logoColor)]()
+[![Jinga](https://img.shields.io/badge/-Jinga-black?style=flat&logo=Jingaa&logoColor)]()
 
 > [!WARNING]
 > This project is still currently under development and is not yet ready for production use. 
 > Given this we would recommend not to use this project in production environments unless 
 > it's for testing purposes only.
+
+
+> [!WARNING]
+> Currently we have switched over to working with Jinga with TailwindCSS and Flask, rather than 
+> working with Vanilla Js and HTML since its just easier to work with overall. This is also because
+> of the constraints we had when working with the frontend.
 
 
 ## Table of Contents
