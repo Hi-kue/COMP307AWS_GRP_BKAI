@@ -1,0 +1,117 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Movie Forum - MovieApp{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-gray-800">Movie Forum</h1>
+        <div class="flex space-x-4">
+            <!-- NOTE: Genre Filter to Filter Movies by their Genre -->
+            <select id="genre-filter" class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="">All Genres</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Horror">Horror</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Thriller">Thriller</option>
+            </select>
+            <!-- NOTE: Rating Filter to Filter Movies by its Rating-->
+            <select id="rating-filter" class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="">All Ratings</option>
+                <option value="9">9+ ⭐</option>
+                <option value="8">8+ ⭐</option>
+                <option value="7">7+ ⭐</option>
+                <option value="6">6+ ⭐</option>
+                <option value="5">5+ ⭐</option>
+                <option value="4">4+ ⭐</option>
+                <option value="3">3+ ⭐</option>
+                <option value="2">2+ ⭐</option>
+                <option value="1">1+ ⭐</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for movie in movies %}
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            {% if movie.poster_url %}
+            <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" class="w-full h-48 object-cover">
+            {% endif %}
+            <div class="p-6">
+                <h3 class="text-lg font-semibold text-gray-800">{{ movie.title }}</h3>
+                <div class="mt-2 flex items-center justify-between">
+                    <span class="text-sm text-gray-600">{{ movie.genre }}</span>
+                    <div class="flex items-center">
+                        <span class="text-yellow-400">★</span>
+                        <span class="ml-1 text-sm text-gray-600">{{ movie.rating }}/10</span>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="text-sm text-gray-600">Added by: {{ movie.username }}</p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="mt-4 border-t pt-4">
+                    <h4 class="text-sm font-medium text-gray-700 mb-2">Comments</h4>
+                    {% if movie.comments %}
+                    {% for comment in movie.comments[:2] %}
+                    <div class="text-sm text-gray-600 mb-2">
+                        <span class="font-medium">{{ comment.username }}:</span> {{ comment.text }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if current_user.is_authenticated %}
+                    <form method="POST" action="{{ url_for('add_comment', movie_id=movie.movie_id) }}" class="mt-2">
+                        <div class="flex space-x-2">
+                            <input type="text" name="comment" placeholder="Add a comment..."
+                                   class="flex-1 px-2 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                            <button type="submit"
+                                    class="px-3 py-1 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Post
+                            </button>
+                        </div>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-span-full text-center py-12">
+            <p class="text-gray-600">No movies have been added yet.</p>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('add_movie') }}" class="mt-4 text-indigo-600 hover:text-indigo-500">Be the first to add a movie!</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    // TODO: Add some Scripts for Functionality.
+
+    document.getElementById('genre-filter').addEventListener('change', function() {
+        applyFilters();
+    });
+
+    document.getElementById('rating-filter').addEventListener('change', function() {
+        applyFilters();
+    });
+
+    function applyFilters() {
+        const genre = document.getElementById('genre-filter').value;
+        const rating = document.getElementById('rating-filter').value;
+        const url = new URL(window.location);
+
+        if (genre) url.searchParams.set('genre', genre);
+        else url.searchParams.delete('genre');
+
+        if (rating) url.searchParams.set('rating', rating);
+        else url.searchParams.delete('rating');
+
+        window.location.href = url.toString();
+    }
+</script>
+{% endblock %}

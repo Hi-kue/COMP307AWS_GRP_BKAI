@@ -1,0 +1,55 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Add Movie - MovieApp{% endblock %}
+
+{% block content %}
+<div class="max-w-lg mx-auto">
+    <div class="bg-white shadow-lg rounded-lg p-8">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Add New Movie</h2>
+        <form method="POST" action="{{ url_for('add_movie') }}" class="space-y-6">
+            <div>
+                <label for="title" class="block text-sm font-medium text-gray-700">Movie Title</label>
+                <input type="text" name="title" id="title" required
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div>
+                <label for="genre" class="block text-sm font-medium text-gray-700">Genre</label>
+                <select name="genre" id="genre" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="">Select a Genre</option>
+                    <option value="Action">Action</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Thriller">Thriller</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="rating" class="block text-sm font-medium text-gray-700">Rating (1-10)</label>
+                <input type="number" name="rating" id="rating" min="1" max="10" required
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div>
+                <label for="poster_url" class="block text-sm font-medium text-gray-700">Poster URL (Optional)</label>
+                <input type="url" name="poster_url" id="poster_url"
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div>
+                <button type="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Add Movie
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // TODO: Add some Scripts for Functionality.
+</script>
+{% endblock %}
